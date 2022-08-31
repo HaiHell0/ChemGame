@@ -8,7 +8,7 @@
 
     if(!is_dir($newFileName) && !$_POST["game-name"]==""){
       mkdir("./".$newFileName,007);
-      echo "Fodler created";
+      echo "Folder created";
       mkdir("./".$newFileName."/".$newFileName."_images",007);
 
 
@@ -38,12 +38,14 @@
           move_uploaded_file($_FILES['img']['tmp_name'][$i],"./".$newFileName."/".$newFileName."_images/".$filename);
           }
         }
+      //make files if none are submitted(for edit later)
+      
       //update database with new game
       $games=json_decode(file_get_contents(__DIR__ .'/database.json','w+'),true);
-      $address =  "./".$newFileName."/".$newFileName.".php";
+      $address =  ".\\".$newFileName."\\".$newFileName.".php";
       $games['games'][]=['game-name'=>$_POST["game-name"],'location'=>$address];
 		  $data=fopen(__DIR__ .'/database.json','w+');
-      fwrite($data,json_encode($games,JSON_UNESCAPED_SLASHES));
+      fwrite($data,json_encode($games));
 		  fclose($data);
 
     }

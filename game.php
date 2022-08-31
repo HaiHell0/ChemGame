@@ -21,7 +21,7 @@ $games=json_decode(file_get_contents(__DIR__ .'/database.json'),true);
     <?php
     echo $games['games'][$_GET['index']]['game-name'];
     ?>
-
+    <p><a href="edit.php?index=<?=$_GET['index']?>">Edit game type</a></p>
 
 
 
