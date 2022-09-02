@@ -1,14 +1,19 @@
 <?php
 $games=json_decode(file_get_contents(__DIR__ .'/database.json'),true);
 ?>
-/*PHP functions*/
 <?php
-function download($fileType){
+function download($fileName){
     $folder=json_decode(file_get_contents(__DIR__ .'/database.json'),true)['games'][$_GET['index']]['location'];
-    $file=$folder."\\".$fileType;
-    header("Content-disposition: attachment;filename=$file");
-    readfile($file);
+    $file=$folder."\\".$fileName;
+    echo $file;
+    header('Content-Type: text/php');
+    header("Content-disposition: attachment;filename=$fileName");
+    readfile(".\\test5\\test5.php");
 }
+if(isset($_GET['file'])){
+  download($_GET['file']);
+}
+
 
 
 
@@ -28,7 +33,7 @@ function download($fileType){
 
 
     <?php
-if(!isset($_GET['id']))
+if(!isset($_GET['index']))
 {
 ?>
 <h1>Chooose the game type you would like to edit</h1>
@@ -37,6 +42,8 @@ if(!isset($_GET['id']))
 			foreach($games['games'] as $game){
 				?>
 				<p><a href="edit.php?index=<?= $i ?>"><?= $game['game-name'] ?></a></p>
+       
+
 				
 				<?php
 				$i++;
@@ -45,11 +52,26 @@ if(!isset($_GET['id']))
 <?php
 }
 else{
+    $name = $games['games'][$_GET['index']]['game-name'];
+    $location = $games['games'][$_GET['index']]['game-name'];
+    $i = $_GET['index'];
 ?>
-<h1>You have chosen to edit: <?=$games['games'][$_GET['index']]['game-name']?></h1>
+<h1>You have chosen to edit: <?=$name?></h1>
 List of resources:
-<a href = "edit.php?index=<?=$_GET['index']?>&download=php">Download the games PHP file</a>
+<?php
+if ($handle = opendir($location)) {
 
+  while (($entry = readdir($handle))) {
+
+      if ($entry != "." && $entry != "..") {
+         
+          echo '<a href="edit.php?index='.$i.'&file='.$entry.'">'.$entry.'</><br>';
+      }
+  }
+
+  closedir($handle);
+}
+?>
 
 
 

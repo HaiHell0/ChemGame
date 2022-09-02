@@ -26,7 +26,8 @@ $games=json_decode(file_get_contents(__DIR__ .'/database.json'),true);
 
 
     <?php
-    include $games['games'][$_GET['index']]['location'];
+    echo $games['games'][$_GET['index']]['location']."\\".$games['games'][$_GET['index']]['game-name'].".php";
+    include $games['games'][$_GET['index']]['location']."\\".$games['games'][$_GET['index']]['game-name'].".php";
     ?>
 
 
