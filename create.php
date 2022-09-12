@@ -10,20 +10,27 @@
       mkdir("./".$newFileName,007);
       echo "Folder created";
       mkdir("./".$newFileName."/".$newFileName."_images",007);
+      $myfile = fopen("./".$newFileName."/".$newFileName.".php", "w");
+      $myfile = fopen("./".$newFileName."/".$newFileName.".css", "w");
+      $myfile = fopen("./".$newFileName."/".$newFileName.".js", "w");
 
 
       if(isset($_FILES['php']['name'])){
         move_uploaded_file($_FILES['php']['name'],"./".$newFileName."/".$_FILES['php']['name']);
       }
+ 
+      
 
       
       if(isset($_FILES['css']['name'])){
         move_uploaded_file($_FILES['css']['name'],"./".$newFileName."/".$_FILES['css']['name']);
       }
+    
       
       if(isset($_FILES['js']['name'])){
         move_uploaded_file($_FILES['js']['name'],"./".$newFileName."/".$_FILES['js']['name']);
       }
+ 
       
 
       if(isset($_FILES['img']['name'])){

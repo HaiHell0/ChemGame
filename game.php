@@ -26,6 +26,7 @@ $games=json_decode(file_get_contents(__DIR__ .'/database.json'),true);
 
 
     <?php
+
     include __DIR__.$games['games'][$_GET['index']]['location'].'\\'.$games['games'][$_GET['index']]['game-name'].'.php';
     ?>
 
@@ -41,7 +42,7 @@ $games=json_decode(file_get_contents(__DIR__ .'/database.json'),true);
           echo '<div><a href="game.php?index='.$_GET['index'].'">Back to main</a></div>';
         }
       
-    ?>
+   ?>
 
 
 
