@@ -1,0 +1,21 @@
+{
+    "games": [
+        {
+            "game-name": "demo",
+            "cards": [
+                {
+                    "value1": "this",
+                    "imgURL1": "that",
+                    "value2":"that",
+                    "imgURL2":"this"
+                },
+                {
+                    "value1": "test2",
+                    "imgURL1": "that",
+                    "value2":"test3",
+                    "imgURL2":"this"
+                }
+            ]
+        }
+    ]
+}

@@ -42,7 +42,7 @@
       
       //update database with new game
       $games=json_decode(file_get_contents(__DIR__ .'/database.json','w+'),true);
-      $address =  ".\\".$newFileName."\\".$newFileName.".php";
+      $address =  ".\\".$newFileName;
       $games['games'][]=['game-name'=>$_POST["game-name"],'location'=>$address];
 		  $data=fopen(__DIR__ .'/database.json','w+');
       fwrite($data,json_encode($games));

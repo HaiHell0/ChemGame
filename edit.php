@@ -28,7 +28,7 @@ function download($fileType){
 
 
     <?php
-if(!isset($_GET['id']))
+if(!isset($_GET['index']))
 {
 ?>
 <h1>Chooose the game type you would like to edit</h1>

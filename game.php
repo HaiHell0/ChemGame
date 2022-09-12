@@ -26,7 +26,21 @@ $games=json_decode(file_get_contents(__DIR__ .'/database.json'),true);
 
 
     <?php
-    include $games['games'][$_GET['index']]['location'];
+    include __DIR__.$games['games'][$_GET['index']]['location'].'\\'.$games['games'][$_GET['index']]['game-name'].'.php';
+    ?>
+
+    <?php
+        if(!isset($_GET['game-id'])){
+        $config=json_decode(file_get_contents(__DIR__.$games['games'][$_GET['index']]['location'].'\\config.json'),true);
+        for($i = 0; $i < count($config["games"]);$i++){
+            echo '<div><a href="game.php?index='.$_GET['index'].'&game-id='.$i.'">'.$config["games"][$i]["game-name"].'</a></div>';
+        }
+        echo '<div><a href="createPlay.php?index='.$_GET['index'].'&create=true">Custom game</a></div>';
+        }
+        else{
+          echo '<div><a href="game.php?index='.$_GET['index'].'">Back to main</a></div>';
+        }
+      
     ?>
 
 
