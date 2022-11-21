@@ -15,12 +15,11 @@ if(!isset($_GET['index']))
 			$i=0;
 			foreach($games['games'] as $game){
 				?>
-				<p><a href="createPlay.php?index=<?= $i ?>"><?= $game['game-name'] ?></a></p>
+				<p><a href="createGame.php?index=<?= $i ?>&create=true"><?= $game['game-name']?></a></p>
 				
 				<?php
 				$i++;
 			}
-		
 		?>
 <?php
 }
@@ -30,7 +29,7 @@ else{
 <?php
     echo $games['games'][$_GET['index']]['game-name'];
     ?>
-    <p><a href="edit.php?index=<?=$_GET['index']?>">Edit game type</a></p>
+    <p><a href="editGame.php?index=<?=$_GET['index']?>">Edit game type</a></p>
     
 
 

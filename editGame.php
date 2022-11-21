@@ -4,14 +4,12 @@ $games=json_decode(file_get_contents(__DIR__ .'/database.json'),true);
 <?php
 function download($fileName){
     $folder=json_decode(file_get_contents(__DIR__ .'/database.json'),true)['games'][$_GET['index']]['location'];
-    $file=$folder."\\".$fileName;
-    echo $file;
-    header('Content-Type: text/php');
+    $file=__DIR__."\\".$folder."\\".$fileName;
     header("Content-disposition: attachment;filename=$fileName");
-    readfile(".\\test5\\test5.php");
+    readfile($file);
 }
-if(isset($_GET['file'])){
-  download($_GET['file']);
+if(isset($_GET['f'])){
+  download($_GET['f']);
 }
 
 
@@ -65,7 +63,7 @@ if ($handle = opendir($location)) {
 
       if ($entry != "." && $entry != "..") {
          
-          echo '<a href="edit.php?index='.$i.'&file='.$entry.'">'.$entry.'</><br>';
+          echo '<a href="editGame.php?index='.$i.'&f='.$entry.'">'.$entry.'</><br>';
       }
   }
 

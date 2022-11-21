@@ -2,14 +2,6 @@
 {
     "games": [
         {
-            "game-name": "khit",
-            "location": "\\khit\\khit.php"
-        },
-        {
-            "game-name": "Test3",
-            "location": "\\Test3\\Test3.php"
-        },
-        {
             "game-name": "MatchingGame",
             "location": "\\MatchingGame"
         }

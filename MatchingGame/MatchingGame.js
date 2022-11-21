@@ -3,18 +3,20 @@
 $(document).ready(function () {
 
     
-    function addImg(divID) {
+    function addCouple(divID) {
         $(`#${divID}`).append(
             `     
         <br> 
-        <input type="file" name="img[]" id="img" multiple>
-        <label for="php">Upload CSS file</label><br><br>
+        <label for="php">Object1</label>
+        <input type="textbox" id="couple" name="couple1" placeholder="Object1"><br>
+        <label for="php">Object2</label>
+        <input type="textbox" id="couple" name="couple2" placeholder="Object2"><br>
         `
         )
     }
 
-    $("#addImg").click(function () {
-        addImg("img")
+    $("#addcouple").click(function () {
+        addCouple("img")
     })
     
     console.log("hello");

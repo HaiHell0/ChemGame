@@ -18,15 +18,9 @@
       if(isset($_FILES['php']['name'])){
         move_uploaded_file($_FILES['php']['name'],"./".$newFileName."/".$_FILES['php']['name']);
       }
- 
-      
-
-      
       if(isset($_FILES['css']['name'])){
         move_uploaded_file($_FILES['css']['name'],"./".$newFileName."/".$_FILES['css']['name']);
       }
-    
-      
       if(isset($_FILES['js']['name'])){
         move_uploaded_file($_FILES['js']['name'],"./".$newFileName."/".$_FILES['js']['name']);
       }
@@ -48,7 +42,7 @@
       //make files if none are submitted(for edit later)
       
       //update database with new game
-      $games=json_decode(file_get_contents(__DIR__ .'/database.json','w+'),true);
+      $games=json_decode(file_get_contents(__DIR__ .'/database.json',true),true);
       $address =  ".\\".$newFileName;
       $games['games'][]=['game-name'=>$_POST["game-name"],'location'=>$address];
 		  $data=fopen(__DIR__ .'/database.json','w+');

@@ -60,33 +60,23 @@ class game
         //load form
         echo ('
         	<div class="container">
-		<h1>Matching game custom game</h1>
-            <form action="" method="POST" enctype="multipart/form-data">
-            <input type="textbox" id="game-name" name="game-name" placeholder="name of the game">
-            <label for="game-name">Name of the game</label><br><br>
-
-            <input type="file" accept=".php "name="php" id="php">
-            <label for="php">Upload PHP file</label><br><br>
-
-            <input type="file" accept=".js"name="js" id="php">
-            <label for="php">Upload JS file</label><br><br>
-
-            <input type="file" accept=".css"name="css" id="php">
-            <label for="php">Upload CSS file</label><br><br>
-
-
-
-            <button type="button" id="addImg">Click to add IMG</button>
-            <div id="img"></div><br>
-        
-            <input type="submit" value="Create gmae" name="submit">
-        </form>
+                <h1>Matching game custom game</h1>
+                
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    <label for="game-name">Name of the game</label>
+                    <input type="textbox" id="game-name" name="game-name" placeholder="name of the game"><br>
+                    
+                    
+                    <button type="button" id="addcouple">Click to add couple</button>
+                    <div id="img"></div><br>
+                
+                    <input type="submit" value="Create Game" name="submit">
+                </form>
 	</div>
    
         ');
     }
 }
-echo "Hello world";
 if (isset($_GET["game-id"])) {
     game::load_resources($_GET["game-id"]);
 }
