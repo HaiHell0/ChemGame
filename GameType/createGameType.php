@@ -1,5 +1,6 @@
 
 <?php
+  
 
 	if(count($_POST)>0){
 
@@ -10,9 +11,9 @@
       mkdir("./".$newFileName,007);
       echo "Folder created";
       mkdir("./".$newFileName."/".$newFileName."_images",007);
-      $myfile = fopen("./".$newFileName."/".$newFileName.".php", "w");
-      $myfile = fopen("./".$newFileName."/".$newFileName.".css", "w");
-      $myfile = fopen("./".$newFileName."/".$newFileName.".js", "w");
+      $myfile = fopen(ROOT."/"."GameType"."/".$newFileName."/".$newFileName.".php", "w");
+      $myfile = fopen(ROOT."/"."GameType"."/".$newFileName."/".$newFileName.".css", "w");
+      $myfile = fopen(ROOT."/"."GameType"."/".$newFileName."/".$newFileName.".js", "w");
 
 
       if(isset($_FILES['php']['name'])){
@@ -42,13 +43,8 @@
       //make files if none are submitted(for edit later)
       
       //update database with new game
-      $games=json_decode(file_get_contents(__DIR__ .'/database.json',true),true);
-      $address =  ".\\".$newFileName;
-      $games['games'][]=['game-name'=>$_POST["game-name"],'location'=>$address];
-		  $data=fopen(__DIR__ .'/database.json','w+');
-      fwrite($data,json_encode($games));
-		  fclose($data);
 
+      
     }
     else{
       echo"There is already a game with that name";
@@ -86,6 +82,10 @@
             <form action='' method="POST" enctype="multipart/form-data">
             <input type="textbox" id="game-name" name="game-name" placeholder="name of the game">
             <label for="game-name">Name of the game</label><br><br>
+
+            <input type="text" name="category" id="php">
+            <label for="php">Upload PHP file</label><br><br>
+
 
             <input type="file" accept=".php "name="php" id="php">
             <label for="php">Upload PHP file</label><br><br>
