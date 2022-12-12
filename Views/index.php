@@ -3,7 +3,9 @@ require_once("./navbar.php");
 require_once "../settings.php";
 require_once "../Game/GameItem.php";
 require_once "../User/UserItem.php";
+require_once "../GameType/GameTypeItem.php";
 $gameitem = new GameItem();
+$gametypeitem = new GameTypeItem();
 $useritem = new userItem();
 
 
@@ -18,28 +20,42 @@ $useritem = new userItem();
           <div class="dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50"
             style="width: 100%;">
             <select class="form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" data-toggle="select"
-              tabindex="-98">
+              name="category" id="category" tabindex="-98">
               <?php
-              foreach ($gameitem->getAllGames() as $game) {
+              foreach ($gameitem->getAllCategories() as $game) {
 
 
               ?>
-              <option value=<?= $game["GAME_TYPE_ID"] ?>> <?= $game["GAME_NAME"] ?>
+              <option value=<?= $game["category"] ?>> <?= $game["category"] ?>
               </option>
-
-
-
               <?php
-
 
               }
 
               ?>
             </select>
           </div>
+
         </div>
         <div class="col-lg-6 text-lg-right">
+          <div class="dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50"
+            style="width: 100%;">
+            <select class="form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" data-toggle="select"
+              tabindex="-98">
+              <?php
+              foreach ($gametypeitem->getAllGames() as $game) {
 
+
+              ?>
+              <option value=<?= $game["GAME_TYPE_ID"] ?>> <?= $game["GAME_NAME"] ?>
+              </option>
+              <?php
+
+              }
+
+              ?>
+            </select>
+          </div>
         </div>
       </div>
       <?php
@@ -62,8 +78,9 @@ $useritem = new userItem();
             <p class="text-sm"><span class="op-6">Created by</span><a class="text-black" href="#">
                 <?= $id ?>
               </a></p>
-            <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2"
-                href="#">#AppStrap Theme</a> <a class="text-black mr-2" href="#">#Wordpress</a> </div>
+            <div class="text-sm op-5"> Category: <a class="text-black mr-2" href="#">
+                <?= $game["category"] ?>
+              </a> </div>
           </div>
           <div class="col-md-4 op-7">
             <div class="row text-center op-7">
@@ -97,18 +114,33 @@ $useritem = new userItem();
             <hr class="my-0">
             <div class="row text-center d-flex flex-row op-7 mx-0">
               <div class="col-sm-6 flex-ew text-center py-3 border-bottom border-right"> <a
-                  class="d-block lead font-weight-bold" href="#">
+                  class="d-block lead font-weight-bold" href="games.php">
                   <?= count($gameitem->getAllGames()) ?>
                 </a> Games </div>
               <div class="col-sm-6 col flex-ew text-center py-3 border-bottom mx-0"> <a
-                  class="d-block lead font-weight-bold" href="#">
-                  <?= count($gameitem->getAllGames()) ?>
+                  class="d-block lead font-weight-bold" href="gameTypes.php">
+                  <?= count($gametypeitem->getAllGames()) ?>
                 </a> Game Types</div>
             </div>
+            <div class="row text-center d-flex flex-row op-7 mx-0">
+              <div class="col-sm-6 flex-ew text-center py-3 border-bottom border-right"> <a
+                  class="d-block lead font-weight-bold" href="#">
+                  <?= count($gameitem->getAllCategories()) ?>
+                </a> Categories</div>
+              <div class="col-sm-6 col flex-ew text-center py-3 border-bottom mx-0">
+              </div>
 
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#category').change(function (e) {
+        alert("Something");
+      });
+    });
+  </script>

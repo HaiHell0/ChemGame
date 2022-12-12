@@ -33,7 +33,7 @@ $gameitem = new GameTypeItem();
 
 
 
-							<form id="form" method="post">
+							<form id="form">
 								<h2>Create a new game</h2>
 								<p>Start by choosing a game type</p>
 								<div class="form-group">
@@ -63,7 +63,7 @@ $gameitem = new GameTypeItem();
 
 									<div class="form-group">
 										<label for="pass">Category</label>
-										<input type="password" class="form-control" id="category" placeholder="Category"
+										<input type="text" class="form-control" id="category" placeholder="Category"
 											name="category">
 									</div>
 

@@ -34,6 +34,14 @@ class GameItem
     {
         return $this->db->run("SELECT * FROM game")->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function getAllCategories()
+    {
+        return $this->db->run("SELECT category FROM game")->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public function getGameByCategory($category)
+    {
+        return $this->db->run("SELECT * FROM game WHERE category = ?", [$category])->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
     public function addGame($user_id, $game_type_id, $config, $game_name, $category)
     {
@@ -46,21 +54,13 @@ class GameItem
 
     public function removeGame($id)
     {
-        $query = $this->find('username', $id);
+        $query = $this->find('game_id', $id);
         if ($query->rowCount() == 0)
             return false;
-        $this->db->run('DELETE FROM game WHERE ID=?');
+        $this->db->run('DELETE FROM game WHERE GAME_ID=?', [$id]);
         return true;
     }
 
-    public function removeUser($id)
-    {
-        $query = $this->find('username', $id);
-        if ($query->rowCount() == 0)
-            return false;
-        $this->db->run('DELETE FROM user WHERE ID=?');
-        return true;
-    }
     public function getName($id)
     {
         $query = $this->find('user_id', $id);
@@ -69,9 +69,6 @@ class GameItem
         return $query->fetch(0);
     }
 }
-
-$gameTypeItem = new GameItem();
-$gameTypeItem->addGame("1", "3", "dirPhp", "dirCss", "dirJs");
 
 
 ?>

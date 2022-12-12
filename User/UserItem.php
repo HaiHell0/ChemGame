@@ -27,7 +27,7 @@ class UserItem
             return false;
         $result = $query->fetch();
 
-        if (!$password === $result['PASSWORD'])
+        if (!$password == $result['PASSWORD'])
             return false;
         $_SESSION['USER_ID'] = $result['USER_ID'];
         $_SESSION['USERNAME'] = $result['USERNAME'];
@@ -41,6 +41,7 @@ class UserItem
         if ($query->rowCount() > 0)
             return false;
         $this->db->run('INSERT INTO user(username,password) VALUES(?,?)', [$username, $password]);
+        login($username, $password);
         return true;
     }
     public function removeUser($id)
@@ -58,6 +59,13 @@ class UserItem
             return false;
         $result = $query->fetch();
         return $result["USERNAME"];
+    }
+    public function getGames($id)
+    {
+        $query = $this->find('USER_ID', $id);
+        if ($query->rowCount() == 0)
+            return false;
+        return $this->db->run("SELECT * FROM game WHERE USER_ID= ?", [$id])->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
 

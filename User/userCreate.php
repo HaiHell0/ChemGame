@@ -8,5 +8,5 @@ $result = $adminItem->addUser($_POST['username'], $_POST['password']);
 if ($result)
     echo json_encode(['message' => "User successfully created"]);
 else
-    echo json_encode(['message' => "User already exists"]);
+    echo json_encode(['message' => "ERROR"]);
 ?>
